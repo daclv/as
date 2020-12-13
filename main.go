@@ -159,7 +159,7 @@ func newInstance() *Instance {
 	}
 
 	a := &assigner{}
-	i.Id = a.assign(metadata.InstanceId)
+	i.Id = a.assign(metadata.InstanceID)
 	i.Zone = a.assign(metadata.Zone)
 	i.Name = a.assign(metadata.InstanceName)
 	i.Hostname = a.assign(metadata.Hostname)
