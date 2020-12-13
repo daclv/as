@@ -43,7 +43,7 @@ const (
   <tbody>
 	<tr>
 	  <td>Tên</td>
-	  <td>{{.Name}}</td>
+	  <td>{{.Id}}</td>
 	</tr>
 	<tr>
 	  <td>Phiên bản</td>
