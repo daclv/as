@@ -23,7 +23,7 @@ import (
 
 func TestGCE(t *testing.T) {
 	i := newInstance()
-	if i.Error != "Not running on GCE" {
+	if metadata.OnGCE() {
 		t.Error("Test not running on GCE, but error does not indicate that fact.")
 	}
 }
