@@ -26,6 +26,4 @@ func TestGCE(t *testing.T) {
 	if !metadata.OnGCE() && i.Error != "Not running on GCE" {
 		t.Error("Test not running on GCE, but error does not indicate that fact.")
 	}
-	else
-	t.Error("I'm fine.")
 }

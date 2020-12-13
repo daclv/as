@@ -169,7 +169,7 @@ func newInstance() *Instance {
 	i.Version = version
 
 	if a.err != nil {
-		i.Error = a.err.Error()
+		i.Error = a.err.Error("123")
 	}
 	return i
 }
