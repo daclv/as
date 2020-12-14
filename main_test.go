@@ -17,13 +17,13 @@
 package main
 
 import (
-	"cloud.google.com/go/compute/metadata"
 	"testing"
 )
 
 func TestGCE(t *testing.T) {
 	i := newInstance()
-	if i.Id != "Not running on GCE" {
+	a := &assigner{}
+	if a.assign(metadata.InstanceID) != "1234" {
 		t.Error("Test not running on GCE, but error does not indicate that fact.")
 	}
 }
