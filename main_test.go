@@ -23,8 +23,8 @@ import (
 
 func TestGCE(t *testing.T) {
 	i := newInstance()
-	a := &assigner{}
-	if a.assign(metadata.InstanceID) != "1234" {
+	if !metadata.OnGGCE() && i.Error != "Test not running on GCE"{
+
 		t.Error("Test not running on GCE, but error does not indicate that fact.")
 	}
 }
