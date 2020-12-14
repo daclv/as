@@ -17,7 +17,7 @@ FROM golang:1.14
 WORKDIR /go/src/app
 COPY . .
 
-RUN go get ..
+RUN go get -u ./...
 RUN go install -v ./...
 
 CMD ["app"]
