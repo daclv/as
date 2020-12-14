@@ -12,8 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.11
-WORKDIR /go/src/app
-COPY . .
-RUN go install -v
-CMD ["app"]
+FROM golang:1.10-onbuild
