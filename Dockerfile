@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.12.0-alpine-onbuild
+FROM golang:0.32.0
