@@ -10,12 +10,9 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
+# limitations under the License.    
 
 steps:
-
-### Build
-
   - id: 'build'
     name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
@@ -23,13 +20,6 @@ steps:
       - '-c'
       - |
           docker build -t gcr.io/$PROJECT_ID/gceme:$TAG_NAME .
-
-
-
-### Test
-
-
-### Publish
   - id: 'publish'
     name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
@@ -37,10 +27,6 @@ steps:
       - '-c'
       - |
           docker push gcr.io/$PROJECT_ID/gceme:$TAG_NAME
-
-
-
-### Deploy
   - id: 'deploy'
     name: 'gcr.io/cloud-builders/gcloud'
     env:
@@ -54,16 +40,10 @@ steps:
           CLUSTER=$$(gcloud config get-value container/cluster)
           PROJECT=$$(gcloud config get-value core/project)
           ZONE=$$(gcloud config get-value compute/zone)
-          
-
           gcloud container clusters get-credentials "$${CLUSTER}" \
             --project "$${PROJECT}" \
             --zone "$${ZONE}"  
-
-
-
-          sed -i 's|gcr.io/cloud-solutions-images/gceme:.*|gcr.io/$PROJECT_ID/gceme:$TAG_NAME|' ./kubernetes/deployments/prod/*.yaml
-          
+          sed -i 's|gcr.io/cloud-solutions-images/gceme:.*|gcr.io/$PROJECT_ID/gceme:$TAG_NAME|' ./kubernetes/deployments/prod/*.yaml     
           kubectl get ns production || kubectl create ns production
           kubectl apply --namespace production --recursive -f kubernetes/deployments/prod
           kubectl apply --namespace production --recursive -f kubernetes/services
