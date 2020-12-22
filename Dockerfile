@@ -12,12 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.14
-
-WORKDIR /go/src/app
-COPY . .
-
-RUN go get -u cloud.google.com/go/compute/metadata
-RUN go install -v ./...
-
-CMD ["app"]
+FROM golang:onbuild
